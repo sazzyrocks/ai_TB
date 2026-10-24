@@ -1,0 +1,1508 @@
+/* ==========================================================================
+   TB-Detect XAI: World-Class Medical AI Evaluation Platform
+   Color Palette: Emerald Green, Teal, Soft Cream, White, Mustard-Gold
+   Layout: Strict Single-Screen Responsive (1920x1080 and 1366x768)
+   Typography: Plus Jakarta Sans & JetBrains Mono (Pure SVGs, Zero Emojis)
+   ========================================================================== */
+
+:root {
+    /* Medical AI Palette */
+    --color-emerald-deep: #064e3b;
+    --color-emerald: #059669;
+    --color-emerald-light: #10b981;
+    --color-emerald-subtle: #ecfdf5;
+    --color-emerald-border: #a7f3d0;
+
+    --color-teal-dark: #0f2922;
+    --color-teal: #0d9488;
+    --color-teal-soft: #14b8a6;
+    --color-mint-subtle: #f0fdfa;
+    --color-mint-border: #99f6e4;
+
+    --color-gold-deep: #92400e;
+    --color-gold: #c58c27;
+    --color-gold-bright: #d97706;
+    --color-gold-subtle: #fffbeb;
+    --color-gold-border: #fde68a;
+
+    --color-cream-bg: #f6f8f4;
+    --color-cream-card: #fafbf9;
+    --color-white: #ffffff;
+
+    --color-tb-red: #dc2626;
+    --color-tb-red-subtle: #fff1f2;
+    --color-tb-red-border: #fecdd3;
+
+    --color-dark-viewport: #05070a;
+
+    /* Typography & Borders */
+    --text-primary: #0f2922;
+    --text-secondary: #334e45;
+    --text-muted: #5b7b71;
+    --text-light: #8fa69f;
+
+    --border-card: #e4e9e2;
+    --border-subtle: #edf1eb;
+
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --shadow-card: 0 4px 16px -2px rgba(15, 41, 34, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.02);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   Base Viewport Normalization (Strictly Single-Screen)
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    background-color: var(--color-cream-bg);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Subtle Organic Ambient Background Overlays */
+.ambient-glow {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+}
+
+.glow-top-right {
+    top: -100px;
+    right: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, #ccfbf1 0%, #d1fae5 60%, transparent 80%);
+}
+
+.glow-top-left {
+    top: -80px;
+    left: -60px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, #fef3c7 0%, #fef9c3 50%, transparent 80%);
+    opacity: 0.45;
+}
+
+.glow-bottom-left {
+    bottom: -80px;
+    left: -50px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, #d1fae5 0%, #ecfdf5 60%, transparent 80%);
+    opacity: 0.5;
+}
+
+/* Faint Background Neural Constellation Watermark */
+.bg-neural-watermark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55vw;
+    height: 45vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   HEADER COMPONENT
+   ========================================================================== */
+.app-header {
+    height: 52px;
+    min-height: 52px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 20;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.header-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-lungs-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.brand-titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brand-main-title {
+    font-size: 1.18rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+.title-tb {
+    color: var(--color-teal-dark);
+}
+
+.title-xai {
+    color: var(--color-gold);
+    font-weight: 800;
+}
+
+.brand-subtitle {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--color-emerald-deep);
+    line-height: 1.1;
+    margin-top: 1px;
+}
+
+.brand-tagline {
+    font-size: 0.63rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1;
+}
+
+/* Header Feature Pills */
+.header-pills-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.feature-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--border-card);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.pill-icon-box {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-teal { background: #e6f7f3; color: var(--color-teal); }
+.icon-gold { background: #fef7ea; color: var(--color-gold-bright); }
+.icon-emerald { background: #ecfdf5; color: var(--color-emerald); }
+
+.pill-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.pill-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.pill-desc {
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.text-emerald {
+    color: var(--color-emerald) !important;
+}
+
+.status-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-emerald-light);
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+    animation: statusBlink 2s infinite ease-in-out;
+}
+
+@keyframes statusBlink {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.btn-conference-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--color-white);
+    border: 1px solid var(--color-gold-border);
+    border-radius: 20px;
+    color: var(--color-gold-deep);
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+}
+
+.btn-conference-view:hover {
+    background: var(--color-gold-subtle);
+    border-color: var(--color-gold);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD WORKSPACE (24% | 25% | 51% Strict Single Screen)
+   ========================================================================== */
+.dashboard-workspace {
+    flex: 1;
+    min-height: 0;
+    height: calc(100vh - 52px - 36px);
+    max-height: calc(100vh - 52px - 36px);
+    display: grid;
+    grid-template-columns: 24% 25% 51%;
+    gap: 12px;
+    padding: 8px 14px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.dash-card {
+    background: var(--color-white);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 0;
+    padding: 10px 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Step Header with Dark Numbered Circle */
+.card-step-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+}
+
+.step-num-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--color-teal-dark);
+    color: var(--color-white);
+    font-size: 0.72rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.step-titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.step-title {
+    font-size: 0.86rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+.step-subtitle {
+    font-size: 0.64rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.academic-figure-label {
+    display: none;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   PANEL 1 (LEFT ~24%): Chest X-ray Input
+   ========================================================================== */
+.panel-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.upload-dropzone-box {
+    height: 84px;
+    min-height: 84px;
+    background: #f8faf6;
+    border: 1.5px dashed var(--color-emerald-border);
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.upload-dropzone-box:hover {
+    border-color: var(--color-emerald);
+    background: #f0fdf4;
+}
+
+.dropzone-idle-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    text-align: center;
+    gap: 3px;
+    width: 100%;
+}
+
+.upload-green-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #dcfce7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.drop-primary-text {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.drop-secondary-text {
+    font-size: 0.64rem;
+    color: var(--text-muted);
+}
+
+.btn-browse-action {
+    background: none;
+    border: none;
+    color: var(--color-emerald);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: inherit;
+}
+
+.drop-format-meta {
+    font-size: 0.58rem;
+    color: var(--text-light);
+}
+
+/* CXR Preview Frame: Clean Square Aspect Ratio (Zero Letterboxing) */
+.image-preview-frame {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: clamp(210px, 30vh, 275px);
+    background: var(--color-dark-viewport);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+    flex-shrink: 0;
+}
+
+.cxr-render-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.cxr-zoom-icon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(15, 41, 34, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cxr-filename-tag {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: rgba(15, 41, 34, 0.85);
+    color: #f8fafc;
+    font-size: 0.58rem;
+    font-family: var(--font-mono);
+    padding: 1px 6px;
+    border-radius: 4px;
+    max-width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Controls: Remove & Replace */
+.preview-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    flex-shrink: 0;
+    height: 32px;
+}
+
+.btn-action-ctrl {
+    flex: 1;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 8px;
+    font-size: 0.70rem;
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid var(--border-card);
+    background: #ffffff;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+.btn-action-ctrl:hover {
+    background: #f8faf6;
+    border-color: var(--text-muted);
+}
+
+.btn-remove-ctrl:hover {
+    color: var(--color-tb-red);
+    border-color: var(--color-tb-red-border);
+    background: var(--color-tb-red-subtle);
+}
+
+/* Quick Samples */
+.quick-samples-bar {
+    margin-top: 5px;
+    padding: 3px 6px;
+    background: var(--color-cream-card);
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    height: 30px;
+}
+
+.samples-label {
+    font-size: 0.60rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.samples-chip-group {
+    display: flex;
+    gap: 4px;
+}
+
+.btn-sample-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-size: 0.64rem;
+    font-weight: 700;
+    border: 1px solid var(--border-card);
+    background: #ffffff;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.12s ease;
+}
+
+.btn-sample-pill:hover {
+    background: #f0fdf4;
+    border-color: var(--color-emerald-border);
+}
+
+.sample-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.dot-red { background: var(--color-tb-red); }
+.dot-green { background: var(--color-emerald); }
+
+/* Primary Predict Button: Gradient Emerald to Mustard Gold */
+.predict-btn-wrap {
+    margin-top: 6px;
+    flex-shrink: 0;
+    height: 40px;
+}
+
+.btn-gradient-predict {
+    width: 100%;
+    height: 100%;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(90deg, #0d7a5f 0%, #108569 45%, #c58c27 100%);
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(13, 122, 95, 0.25);
+    transition: all 0.15s ease;
+}
+
+.btn-gradient-predict:hover:not(:disabled) {
+    box-shadow: 0 4px 14px rgba(13, 122, 95, 0.35);
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+}
+
+.btn-gradient-predict:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.btn-predict-inner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.predict-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.cxr-specs-meta {
+    text-align: center;
+    font-size: 0.60rem;
+    color: var(--text-light);
+    font-weight: 600;
+    font-family: var(--font-mono);
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+/* Processing Overlay */
+.panel-loading-cover {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(3px);
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-inner-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding: 14px;
+}
+
+.dual-pulse-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--color-mint-border);
+    border-top-color: var(--color-emerald);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   PANEL 2 (CENTER ~25%): Prediction Result (Fills Vertically Seamlessly)
+   ========================================================================== */
+.panel-center {
+    display: flex;
+    flex-direction: column;
+}
+
+.prediction-active-content {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Diagnosis Hero Banner */
+.diagnosis-hero-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #fff5f5;
+    border: 1px solid #fee2e2;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.diagnosis-hero-banner.normal-theme {
+    background: #f0fdf4 !important;
+    border-color: #bbf7d0 !important;
+}
+
+.diagnosis-lungs-art {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.diagnosis-hero-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.diagnosis-status-heading {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--color-tb-red);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+}
+
+.diagnosis-hero-banner.normal-theme .diagnosis-status-heading {
+    color: var(--color-emerald) !important;
+}
+
+.diagnosis-status-sub {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #e11d48;
+    line-height: 1.2;
+    margin-top: 1px;
+}
+
+.diagnosis-hero-banner.normal-theme .diagnosis-status-sub {
+    color: #0d9488 !important;
+}
+
+/* Probabilities Row (94.32% Red vs 5.68% Green) */
+.probabilities-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.prob-stat-card {
+    padding: 8px 10px;
+    border-radius: 9px;
+    border: 1px solid var(--border-card);
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.prob-stat-number {
+    font-size: 1.62rem;
+    font-weight: 800;
+    font-family: var(--font-sans);
+    line-height: 1;
+}
+
+.card-stat-tb .prob-stat-number { color: var(--color-tb-red); }
+.card-stat-normal .prob-stat-number { color: var(--color-emerald); }
+
+.prob-stat-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.prob-mini-track {
+    width: 100%;
+    height: 5px;
+    background: #f1f5f9;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 3px;
+}
+
+.prob-mini-bar {
+    height: 100%;
+    transition: width 0.4s ease;
+}
+
+.bar-red { background: var(--color-tb-red); }
+.bar-green { background: var(--color-emerald); }
+
+/* Prediction Confidence Section */
+.confidence-section {
+    padding: 8px 10px;
+    background: var(--color-cream-card);
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.confidence-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.70rem;
+}
+
+.confidence-title {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.confidence-score {
+    font-family: var(--font-mono);
+    font-weight: 800;
+    color: var(--color-tb-red);
+}
+
+.confidence-track {
+    width: 100%;
+    height: 7px;
+    background: #fee2e2;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: var(--color-tb-red);
+    transition: width 0.4s ease;
+}
+
+/* Model Information Block (Fills Lower Half of Panel 2) */
+.model-info-block {
+    flex: 1;
+    min-height: 0;
+    padding: 8px 10px;
+    background: var(--color-cream-card);
+    border-radius: 9px;
+    border: 1px solid var(--border-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    overflow: hidden;
+}
+
+.model-info-header {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 3px;
+    flex-shrink: 0;
+}
+
+.info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    justify-content: space-around;
+}
+
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.67rem;
+}
+
+.info-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-teal);
+    margin-top: 1px;
+}
+
+.info-label {
+    width: 74px;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.info-val-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-val-main {
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.15;
+}
+
+.info-val-sub {
+    font-size: 0.58rem;
+    color: var(--text-muted);
+}
+
+.info-val-text {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Model Benchmark Chips Row (Eliminates Empty Space in Panel 2) */
+.model-benchmark-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    padding-top: 5px;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.benchmark-pill {
+    background: #ffffff;
+    border: 1px solid var(--color-emerald-border);
+    border-radius: 6px;
+    padding: 3px 2px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.benchmark-num {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: var(--color-emerald-deep);
+    font-family: var(--font-mono);
+    line-height: 1;
+}
+
+.benchmark-lbl {
+    font-size: 0.52rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 1px;
+}
+
+/* ==========================================================================
+   PANEL 3 (RIGHT ~51%): Three Explainable AI Visualizations
+   (Side-by-Side Symmetrical Columns, Filling Space Smoothly)
+   ========================================================================== */
+.panel-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.xai-columns-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.xai-method-card {
+    background: var(--color-cream-card);
+    border: 1px solid var(--border-card);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 0;
+    padding: 8px 8px;
+    overflow: hidden;
+}
+
+.method-card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 3px;
+    flex-shrink: 0;
+}
+
+.method-badge-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.badge-mint { background: #ccfbf1; }
+.badge-blue { background: #e0e7ff; }
+.badge-gold { background: #fef3c7; }
+
+.method-titles {
+    display: flex;
+    flex-direction: column;
+}
+
+.method-name {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.method-sub {
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Image Viewport: Clean 1:1 Aspect Ratio (Edge-to-Edge Without Black Letterbox Bars) */
+.xai-image-viewport {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: clamp(210px, 30vh, 275px);
+    background: var(--color-dark-viewport);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+    flex-shrink: 0;
+}
+
+.xai-rendered-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.xai-placeholder-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #64748b;
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+.method-sub-heading {
+    font-size: 0.70rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 4px 0 3px 0;
+    flex-shrink: 0;
+}
+
+/* LIME Legend */
+.lime-legend-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+    padding: 0 2px;
+}
+
+.legend-item-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-color-chip {
+    width: 10px;
+    height: 7px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.chip-coral { background: #ef4444; }
+.chip-emerald { background: #10b981; }
+.chip-dark-border { background: transparent; border: 1.5px solid #334155; }
+
+.legend-text {
+    font-size: 0.58rem;
+    color: var(--text-secondary);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Thermal Scale Bar for Grad-CAM & Grad-CAM++ */
+.scale-bar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-shrink: 0;
+    padding: 0 2px;
+}
+
+.thermal-gradient-strip {
+    width: 100%;
+    height: 7px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #00008b, #00ffff, #00ff00, #ffff00, #ff0000);
+}
+
+.scale-labels-strip {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.56rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+/* Bottom Note Pills */
+.bottom-note-pill {
+    margin-top: 4px;
+    padding: 5px 7px;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.pill-mint {
+    background: #e6f7f3;
+    border: 1px solid #bbf7d0;
+}
+
+.pill-amber {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+}
+
+.note-icon {
+    display: flex;
+    align-items: center;
+    margin-top: 1px;
+}
+
+.note-text {
+    font-size: 0.58rem;
+    color: var(--text-secondary);
+    line-height: 1.25;
+}
+
+/* ==========================================================================
+   FOOTER: 4 TRUST & METADATA BADGES
+   ========================================================================== */
+.app-bottom-footer {
+    height: 36px;
+    min-height: 36px;
+    background: rgba(255, 255, 255, 0.92);
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 20;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.footer-badges-grid {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.footer-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.footer-badge-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #f0fdf4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.footer-badge-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.badge-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.badge-desc {
+    font-size: 0.56rem;
+    color: var(--text-muted);
+    line-height: 1;
+}
+
+/* Floating Exit Button for Conference Mode */
+.floating-conf-exit-btn {
+    position: fixed;
+    top: 10px;
+    right: 16px;
+    z-index: 300;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--color-teal-dark);
+    color: #ffffff;
+    border: 1px solid var(--color-gold);
+    border-radius: 20px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    box-shadow: 0 4px 14px rgba(15, 41, 34, 0.3);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.floating-conf-exit-btn:hover {
+    background: #164e3f;
+    transform: translateY(-1px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   CONFERENCE-PAPER SCREENSHOT MODE (.conference-view)
+   Tailored for Direct 16:9 Paper Figure Capture & Publication Print
+   ========================================================================== */
+body.conference-view {
+    background: #ffffff !important;
+}
+
+body.conference-view .ambient-glow,
+body.conference-view .bg-neural-watermark {
+    display: none !important;
+}
+
+body.conference-view .app-header {
+    background: #ffffff !important;
+    border-bottom: 1.5px solid #0f2922 !important;
+    box-shadow: none !important;
+}
+
+body.conference-view .header-pills-row {
+    display: none !important;
+}
+
+body.conference-view .floating-conf-exit-btn {
+    display: inline-flex !important;
+}
+
+body.conference-view .upload-dropzone-box,
+body.conference-view .preview-actions-row,
+body.conference-view .quick-samples-bar,
+body.conference-view .predict-btn-wrap,
+body.conference-view .panel-loading-cover {
+    display: none !important;
+}
+
+body.conference-view .step-num-badge,
+body.conference-view .step-titles {
+    display: none !important;
+}
+
+body.conference-view .academic-figure-label {
+    display: block !important;
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #0f2922;
+}
+
+body.conference-view .dash-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    padding: 8px 10px !important;
+}
+
+body.conference-view .panel-left .image-preview-frame {
+    margin: auto 0 !important;
+    max-height: clamp(260px, 36vh, 340px) !important;
+}
+
+body.conference-view .app-bottom-footer {
+    background: #ffffff !important;
+    border-top: 1px solid #cbd5e1 !important;
+}
+
+/* Print Stylesheet (Single Landscape Page Flawlessly) */
+@media print {
+    @page {
+        size: landscape;
+        margin: 0.4cm;
+    }
+
+    html, body {
+        width: 100% !important;
+        height: 100% !important;
+        overflow: visible !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .ambient-glow,
+    .bg-neural-watermark,
+    .header-pills-row,
+    .btn-conference-view,
+    .floating-conf-exit-btn,
+    .preview-actions-row,
+    .quick-samples-bar,
+    .predict-btn-wrap,
+    .upload-dropzone-box {
+        display: none !important;
+    }
+
+    .step-num-badge,
+    .step-titles {
+        display: none !important;
+    }
+
+    .academic-figure-label {
+        display: block !important;
+        color: #000000 !important;
+    }
+
+    .dashboard-workspace {
+        height: auto !important;
+        grid-template-columns: 24% 25% 51% !important;
+        gap: 8px !important;
+        padding: 2px !important;
+    }
+}
+
+/* ==========================================================================
+   Compact Viewport Adaptation (1366 × 768)
+   ========================================================================== */
+@media screen and (max-height: 800px) {
+    .app-header {
+        height: 44px;
+        min-height: 44px;
+        padding: 0 12px;
+    }
+
+    .brand-lungs-logo svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .brand-main-title {
+        font-size: 1.05rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.68rem;
+    }
+
+    .brand-tagline {
+        font-size: 0.58rem;
+    }
+
+    .feature-pill {
+        padding: 2px 7px;
+    }
+
+    .dashboard-workspace {
+        height: calc(100vh - 44px - 30px);
+        max-height: calc(100vh - 44px - 30px);
+        padding: 5px 10px;
+        gap: 8px;
+    }
+
+    .dash-card {
+        padding: 7px 9px;
+    }
+
+    .card-step-header {
+        margin-bottom: 4px;
+    }
+
+    .step-title {
+        font-size: 0.80rem;
+    }
+
+    .step-subtitle {
+        font-size: 0.60rem;
+    }
+
+    .upload-dropzone-box {
+        height: 72px;
+        min-height: 70px;
+    }
+
+    .upload-green-circle {
+        width: 24px;
+        height: 24px;
+    }
+
+    .drop-primary-text {
+        font-size: 0.68rem;
+    }
+
+    .image-preview-frame {
+        max-height: clamp(170px, 26vh, 220px);
+    }
+
+    .diagnosis-status-heading {
+        font-size: 0.95rem;
+    }
+
+    .prob-stat-number {
+        font-size: 1.35rem;
+    }
+
+    .model-info-block {
+        padding: 5px 7px;
+        gap: 2px;
+    }
+
+    .info-table {
+        gap: 2px;
+    }
+
+    .info-row {
+        font-size: 0.62rem;
+    }
+
+    .xai-image-viewport {
+        max-height: clamp(170px, 26vh, 220px);
+    }
+
+    .app-bottom-footer {
+        height: 30px;
+        min-height: 30px;
+    }
+
+    .badge-title {
+        font-size: 0.60rem;
+    }
+
+    .badge-desc {
+        font-size: 0.52rem;
+    }
+}

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+.venv/
+venv/
+ENV/
+env/
+tb_detection/tfenv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Project Specific
+tb_detection/dataset/
+tb_detection/TBX11K/
+tb_detection/checkpoints/
+tb_detection/outputs/metrics.csv
+tb_detection/outputs/*.png
+tb_detection/outputs/*.jpg
